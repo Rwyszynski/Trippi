@@ -1,4 +1,4 @@
-package entity;
+package com.trippi.trippiApp.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

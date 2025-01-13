@@ -4,8 +4,8 @@ import com.trippi.trippiApp.dto.RegistrationDto;
 import com.trippi.trippiApp.repository.RoleRepository;
 import com.trippi.trippiApp.repository.UserRepository;
 import com.trippi.trippiApp.service.UserService;
-import entity.Role;
-import entity.User;
+import com.trippi.trippiApp.entity.Role;
+import com.trippi.trippiApp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         user.setLanguages(registrationDto.getLanguages());
         user.setIdNumber(registrationDto.getIdNumber());
         user.setDescription(registrationDto.getDescription());
-        Role role = roleRepository.findByRoleName("USER");
+        Role role = roleRepository.findByName("USER");
         user.setRoles(Arrays.asList(role));
         userRepository.save(user);
     }
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public User findByUsername(String userName) {
+        return userRepository.findByUserName(userName);
     }
 }

@@ -1,8 +1,7 @@
 package com.trippi.trippiApp.controller;
 
-import entity.Language;
-import entity.Role;
-import jakarta.persistence.*;
+import com.trippi.trippiApp.entity.Language;
+import com.trippi.trippiApp.entity.Role;
 import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;

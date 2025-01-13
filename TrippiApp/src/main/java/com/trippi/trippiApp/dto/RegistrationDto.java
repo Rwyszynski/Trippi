@@ -1,6 +1,6 @@
 package com.trippi.trippiApp.dto;
 
-import entity.Language;
+import com.trippi.trippiApp.entity.Language;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 

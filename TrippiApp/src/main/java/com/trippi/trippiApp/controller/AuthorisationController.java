@@ -2,7 +2,7 @@ package com.trippi.trippiApp.controller;
 
 import com.trippi.trippiApp.dto.RegistrationDto;
 import com.trippi.trippiApp.service.UserService;
-import entity.User;
+import com.trippi.trippiApp.entity.User;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -45,8 +45,8 @@ public class AuthorisationController {
         if(existingUserEmail != null && existingUserEmail.getEmail() != null && !existingUserEmail.getEmail().isEmpty()) {
             return "redirect:/register?fail";
         }
-        User existingUserUsername = userService.findByUsername(user.getUserName());
-        if(existingUserUsername != null && existingUserUsername.getUserName() != null && !existingUserUsername.getUserName().isEmpty()) {
+        User existingUserName = userService.findByUsername(user.getUserName());
+        if(existingUserName != null && existingUserName.getUserName() != null && !existingUserName.getUserName().isEmpty()) {
             return "redirect:/register?fail";
         }
         if(result.hasErrors()) {
