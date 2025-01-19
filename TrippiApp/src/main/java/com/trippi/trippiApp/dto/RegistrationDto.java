@@ -1,9 +1,7 @@
 package com.trippi.trippiApp.dto;
 
-import com.trippi.trippiApp.entity.Language;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class RegistrationDto {
     private int age;
     private String country;
     private String city;
-    private List<Language> languages = new ArrayList<>();
+    private List<Long> languagesIds = new ArrayList<>();
     private String idNumber;
     private String description;
 

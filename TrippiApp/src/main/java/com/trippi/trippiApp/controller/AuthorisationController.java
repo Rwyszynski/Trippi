@@ -42,6 +42,8 @@ public class AuthorisationController {
     public String register(@Valid @ModelAttribute("user")RegistrationDto user,
                            BindingResult result, Model model) {
         User existingUserEmail = userService.findByEmail(user.getEmail());
+
+        /*
         if(existingUserEmail != null && existingUserEmail.getEmail() != null && !existingUserEmail.getEmail().isEmpty()) {
             return "redirect:/register?fail";
         }
@@ -53,6 +55,7 @@ public class AuthorisationController {
             model.addAttribute("user", user);
             return "register";
         }
+        */
         userService.saveUser(user);
         return "redirect:/clubs?success";
     }

@@ -55,5 +55,22 @@ body {
 
 form {
     display: ruby;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.text-danger:empty{
+  display:none
+}
+form>.info{
+  padding-bottom:15px;
+  margin-bottom:15px;
+
+}
+button{
+  width: 200px;
+  margin: 30px auto;
+  height: 30px;
 }
 

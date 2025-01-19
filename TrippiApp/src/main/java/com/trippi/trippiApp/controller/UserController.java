@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller  //albo Restcontroller
+@Controller
 public class UserController {
     private Long id;
     private String nickName;
@@ -23,18 +23,5 @@ public class UserController {
     private String idNumber;
     private String description;
     private List<Role> roles = new ArrayList<>();
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
