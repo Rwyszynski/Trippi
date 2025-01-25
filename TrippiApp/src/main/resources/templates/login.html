@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
-    <link rel="stylesheet" type="text/css" href="../static/CSS/style.css" />
+    <link rel="stylesheet" type="text/css" href="/CSS/style.css" />
     <meta charset="UTF-8" />
-    <title>Register</title>
+    <title>Logowanie</title>
 </head>
+
 <body>
 <div class="navbar">
     <div class="button"><a href="" class="nav-btn">Konto</a></div>
     <div class="button"><a href="" class="nav-btn">Szukaj</a></div>
     <div class="button"><a href="" class="nav-btn">Wiadomości</a></div>
-    <div class="button"><a href="" class="nav-btn">Logowanie</a></div>
-    <div class="button"><a href="" class="nav-btn">Rejestracja</a></div>
-    <div class="button"><a href="" class="nav-btn">Wyloguj</a></div>
+    <div class="button"><a href="/login" class="nav-btn">Logowanie</a></div>
+    <div class="button"><a href="/register" class="nav-btn">Rejestracja</a></div>
+    <div class="button"><a href="/logout" class="nav-btn">Wyloguj</a></div>
 </div>
 <div class="main">
     <div class="sidebar">
@@ -20,102 +23,42 @@
     </div>
 
     <div class="mainpage">
-        <h2>Zarejestruj się</h2>
-        <form method="POST">
-            <div class="info">
-                Imię:
-                <input
-                        type="text"
-                        name="imie"
-                        placeholder="Podaj imię"
-                        class="form-in"
-                />
-            </div>
-            <div class="info">
-                Nazwisko:
-                <input
-                        type="text"
-                        name="nazwisko"
-                        placeholder="Podaj nazwisko"
-                        class="form-in"
-                />
-            </div></br>
-            <div class="info">
-                Płeć:
-                <input type="radio" name="Płeć" value="Kobieta" />Kobieta
-                <input type="radio" name="Płeć" value="Mężczyzna" />Mężczyzna </br>
-            </div>
-            <div class="info">
+        <h2>Logowanie</h2>
 
-                Nick:
-                <input
-                        type="text"
-                        name="nick"
-                        placeholder="Podaj nick"
-                        class="form-in"
-                />
-            </div>
-            <div class="info">
-                Email:
-                <input
-                        type="email"
-                        name="email"
-                        placeholder="Podaj email"
-                        class="form-in"
-                />
-            </div>
-            <div class="info">
-                Wiek:</br>
-                <input type="radio" name="Wiek" value="mniej niż 15">mniej niż 15<br>
-                <input type="radio" name="Wiek" value="15-19">15-19<br>
-                <input type="radio" name="Wiek" value="20-29">20-29<br>
-                <input type="radio" name="Wiek" value="30-39">30-39<br>
-                <input type="radio" name="Wiek" value="40-60">40-60<br>
-                <input type="radio" name="Wiek" value="więcej niż 60">więcej niż 60
-                </br>
+        <div th:if="${param.error}" class="alert alert-danger">
+            Zły nick lub hasło!
+        </div>
+        <div th:if="${param.logout}" class="alert alert-success">
+            Wylogowałeś się!
+        </div>
+        <div class="register">
+            <form method="POST" role="form" th:action="@{/login}">
+
                 <div class="info">
-                    Kraj:
-                    <select>
-                        <option>Afghanistan</option>
-
-                    </select>
-
-                </div>
-                <div class="info">
-                    Miasto:
+                    Nick:
                     <input
+                            id="username"
                             type="text"
-                            name="miasto"
-                            placeholder="Podaj miasto"
+                            name="username"
+                            placeholder="Podaj nick"
                             class="form-in"
                     />
                 </div>
+
                 <div class="info">
-                    Języki:</br>
-                    <input type="checkbox" name="Muzyka" value="Polski">Polski<br>
-                    <input type="checkbox" name="Muzyka" value="Angielski">Angielski<br>
-                    <input type="checkbox" name="Muzyka" value="Hiszpański">Hiszpański<br>
-                    <input type="checkbox" name="Muzyka" value="Portugalski">Portugalski<br>
-                    <input type="checkbox" name="Muzyka" value="Francuski">Francuski<br>
-                    <input type="checkbox" name="Muzyka" value="Chiński">Chiński<br>
-                    <input type="checkbox" name="Muzyka" value="Rosyjski">Rosyjski<br>
-                    <input type="checkbox" name="Muzyka" value="Niemiecki">Niemiecki</br>
-                </div>
-                <div class="info">
-                    Prześlij dowód:
+                    Hasło:
                     <input
-                            type="text"
-                            name="dowod"
-                            placeholder="Prześlij dowód"
+                            id="password"
+                            type="password"
+                            name="password"
+                            placeholder="Podaj hasło"
                             class="form-in"
                     />
                 </div>
-                <div class="info">
-                    O sobie:</br>
-                    <textarea name="Komentarz" cols="50" rows="10" placeholder="Napisz coś o sobie"></textarea>
-                </div>
-                <input type="submit" value="wyślij" class="btn-send" />
-        </form>
+
+                <button value="Log in" type="submit" class="btn-send">Zaloguj</button>
+            </form>
+        </div>
     </div>
 </div>
 </body>

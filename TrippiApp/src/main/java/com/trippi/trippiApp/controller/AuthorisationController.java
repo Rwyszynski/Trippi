@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Arrays;
 import java.util.List;
 
 
 @Controller
+@RequestMapping
 public class AuthorisationController {
 
     private UserService userService;
@@ -28,6 +30,7 @@ public class AuthorisationController {
     public String login() {
         return "login";
     }
+
     @GetMapping("/register")
     public String getRegisterForm(Model model) {
         RegistrationDto user = new RegistrationDto();
@@ -57,6 +60,11 @@ public class AuthorisationController {
         }
         */
         userService.saveUser(user);
-        return "redirect:/clubs?success";
+        return "success";
+    }
+
+    @GetMapping("/success")
+    public String success() {
+        return "success";
     }
 }

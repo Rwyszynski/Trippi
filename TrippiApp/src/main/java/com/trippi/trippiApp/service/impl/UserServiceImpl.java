@@ -9,6 +9,8 @@ import com.trippi.trippiApp.service.UserService;
 import com.trippi.trippiApp.entity.Role;
 import com.trippi.trippiApp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
@@ -18,20 +20,21 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private LanguageRepository languageRepository;
-
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, LanguageRepository languageRepository) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, LanguageRepository languageRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.languageRepository = languageRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public void saveUser(RegistrationDto registrationDto) {
         User user = new User();
         user.setUserName(registrationDto.getUserName());
-        user.setPassword(registrationDto.getPassword());
+        user.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
         user.setNickName(registrationDto.getNickName());
         user.setEmail(registrationDto.getEmail());
         user.setLastName(registrationDto.getLastName());
@@ -41,7 +44,6 @@ public class UserServiceImpl implements UserService {
         user.setCity(registrationDto.getCity());
 
         List<Language> languages = languageRepository.findAll();
-        System.out.println("dł " + languages.size());
         user.setLanguages(languages);
 
         user.setIdNumber(registrationDto.getIdNumber());
