@@ -5,15 +5,17 @@ import com.trippi.trippiApp.entity.Language;
 import com.trippi.trippiApp.repository.LanguageRepository;
 import com.trippi.trippiApp.repository.RoleRepository;
 import com.trippi.trippiApp.repository.UserRepository;
+import com.trippi.trippiApp.search.UserSpecification;
 import com.trippi.trippiApp.service.UserService;
 import com.trippi.trippiApp.entity.Role;
 import com.trippi.trippiApp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class UserServiceImpl implements UserService {
@@ -61,5 +63,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByEmail(username);
+    }
+
+    @Override
+    public List<User> searchUsers(String nickname, String country) {
+        return userRepository.searchUsers(nickname, country);
+
     }
 }

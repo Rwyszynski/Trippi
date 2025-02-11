@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <link rel="stylesheet" type="text/css" href="/CSS/style.css" />
+  <meta charset="UTF-8" />
+  <title>Search</title>
+</head>
+
+<body>
+<div class="navbar">
+  <div class="button"><a href="" class="nav-btn">Konto</a></div>
+  <div class="button"><a href="@{/search}" class="nav-btn">Szukaj</a></div>
+  <div class="button"><a href="" class="nav-btn">Wiadomości</a></div>
+  <div class="button"><a href="@{/login}" class="nav-btn">Logowanie</a></div>
+  <div class="button"><a href="@{/register}" class="nav-btn">Rejestracja</a></div>
+  <div class="button"><a href="@{/logout}" class="nav-btn">Wyloguj</a></div>
+</div>
+
+<div class="main">
+  <div class="sidebar">
+    <h2>Użytkownik</h2>
+  </div>
+  <div class="mainpage">
+    <h2>Wyszukaj</h2>
+    <p>Uzupełnij wybrane pola</p>
+
+    <div class="search">
+      <form th:action="@{/search}" method="get">
+        <div class="info">
+          Nick:
+          <input type="text" name="nickName" placeholder="Podaj nick" class="form-in" th:value="${nickName}" />
+        </div>
+
+        <div class="info">
+          Kraj:
+          <select name="country">
+            <option value="">Wybierz państwo</option>
+            <option th:each="c : ${countryList}" th:value="${c}" th:text="${c}" th:selected="${c == country}"></option>
+          </select>
+        </div>
+
+        <div class="info">
+          Języki:</br>
+          <input type="radio" name="language" value="Polski">Polski<br>
+          <input type="radio" name="language" value="Angielski">Angielski<br>
+          <input type="radio" name="language" value="Hiszpański">Hiszpański<br>
+          <input type="radio" name="language" value="Portugalski">Portugalski<br>
+          <input type="radio" name="language" value="Chiński">Chiński<br>
+          <input type="radio" name="language" value="Rosyjski">Rosyjski<br>
+          <input type="radio" name="language" value="Niemiecki">Niemiecki</br>
+        </div>
+
+        <button type="submit" class="btn-send">Szukaj</button>
+      </form>
+    </div>
+
+    <div class="container">
+      <h1>Wyniki wyszukiwania</h1>
+      <div th:if="${not #lists.isEmpty(results)}">
+        <table class="results-table">
+          <thead>
+          <tr>
+            <th>NickName</th>
+            <th>Country</th>
+            <th>Kontakt</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="user : ${results}">
+            <td th:text="${user.nickName}"></td>
+            <td th:text="${user.country}"></td>
+            <td><a href="#" class="view-btn">Napisz</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div th:if="${#lists.isEmpty(results)}" class="no-results">
+        Nie znaleziono wyników.
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

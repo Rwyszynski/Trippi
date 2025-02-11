@@ -9,15 +9,15 @@ import java.util.List;
 public class RegistrationDto {
 
     private Long id;
-    @NotEmpty
+    @NotEmpty(message = "Pole Nick nie może być puste")
     private String nickName;
-    @NotEmpty
+    @NotEmpty(message = "Pole email nie może być puste")
     private String email;
-    @NotEmpty
+    @NotEmpty(message = "Pole Hasło nie może być puste")
     private String password;
-    @NotEmpty
+    @NotEmpty(message = "Pole Imię nie może być puste")
     private String userName;
-    @NotEmpty
+    @NotEmpty(message = "Pole Nazwisko nie może być puste")
     private String lastName;
     private String sex;
     private int age;
